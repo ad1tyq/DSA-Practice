@@ -1,18 +1,27 @@
 #include <iostream>
 using namespace std;
+#include <unordered_set>
 #include <vector>
 
 class Solution {
 public:
   bool containsDuplicate(vector<int> &nums) {
-    int n = nums.size();
-    for (int i = 0; i < n; i++) {
-      for (int j = 0; j < n; j++) {
-        if (nums[j] == nums[i] && i != j)
+    /*for (int i = 0; i < n; i++) {
+      for (int j = i + 1; j < n; j++) {
+        if (nums[j] == nums[i])
           return 1;
       }
+    }*/
+    int n = nums.size();
+    unordered_set<int> set;
+    for (int i = 0; i < n; i++) {
+      if (set.find(nums[i]) != set.end())
+        return true;
+      set.insert(nums[i]);
     }
-    return 0;
+    if (set.size() != nums.size())
+      return true;
+    return false;
   }
 
   int main() {
