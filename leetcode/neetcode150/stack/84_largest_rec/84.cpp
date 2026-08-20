@@ -10,10 +10,9 @@ public:
     stack<int> st;
     for (int i = 0; i <= n; i++) {
       int current_height = (i == n) ? 0 : heights[i];
-      while (!st.empty() && current_height < heights[st.top()]) {
+      while (!st.empty() && heights[st.top()] > current_height) {
         int height = heights[st.top()];
         st.pop();
-
         int width;
         if (st.empty())
           width = i;
